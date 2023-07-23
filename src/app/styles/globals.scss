@@ -1,0 +1,313 @@
+@import "init";
+@import "mixin";
+@import url("https://fonts.googleapis.com/css2?family=Oswald&family=PT+Sans+Narrow&family=Shadows+Into+Light&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+$clr_dark: #0c090d;
+$clr_bright: #ffffff;
+$clr_alert: #da332e;
+$clr_light: #fef751;
+$clr_assist: #aa8f66;
+$font_title: "Oswald", sans-serif;
+$font-content: "PT Sans Narrow", sans-serif;
+$font-art: "Shadows Into Light", cursive;
+
+.App {
+  overflow-x: hidden;
+}
+h1 {
+  font-size: 1.8rem;
+  padding: 0.5rem;
+}
+h2 {
+  font-size: 1.4rem;
+  padding: 0.5rem;
+}
+span,
+p {
+  padding: 0.5rem;
+}
+
+strong {
+  color: $clr_alert;
+}
+button,
+li {
+  font-family: $font_content;
+}
+button {
+  margin: 0.5rem 1rem;
+  padding: 0.5rem;
+}
+li {
+  margin: 0.5rem;
+  align-items: center;
+}
+img {
+  width: 100%;
+}
+.alert {
+  background-color: $clr_alert;
+}
+
+//Global---------------------------------------------------------
+.item_row {
+  @include flexR;
+  align-items: center;
+  justify-content: center;
+}
+.item_column {
+  @include flexC;
+}
+
+.box {
+  @include flexC;
+  justify-items: flex-start;
+  text-align: center;
+  width: 18rem;
+  height: 25rem;
+  margin: 1rem 0.5rem;
+  .box_img {
+    width: 100%;
+    height: 15rem;
+    overflow: hidden;
+  }
+  .box_content {
+    width: 100%;
+  }
+}
+.smBox {
+  @include flexC;
+  min-width: 35vw;
+}
+
+.icon {
+  background-color: transparent;
+  color: #0c090d;
+}
+
+.item {
+  @include flexC;
+  position: relative;
+  margin: 0.5rem;
+  width: 250px;
+  height: 300px;
+  &_description {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-weight: 700;
+  }
+  &_info {
+    @include flexC;
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    font-size: 1.5rem;
+    font-weight: 900;
+  }
+  &_action {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  img {
+    height: 200px;
+    width: 200px;
+    clip-path: circle(50% at 50% 50%);
+  }
+}
+
+//-----------------------Nav---------------------------------------------------
+.nav {
+  @include flexR;
+  justify-content: space-between;
+  height: 15vh;
+  &_img {
+    margin: 0.5rem;
+    img {
+      height: 5rem;
+      width: 5rem;
+    }
+  }
+}
+//-----------------------Main---------------------------------------------------
+.main {
+  @include flexC;
+  justify-content: center;
+  overflow-x: hidden;
+}
+//-----------------------home--------------------------------------------------------
+section {
+  @include flexC;
+  align-items: center;
+  padding: 0.5rem;
+  min-height: 90vh;
+  .sec_header {
+    width: 100%;
+    font-family: $font-art;
+    text-align: center;
+  }
+  .sec_body {
+    padding: 0.5rem;
+    @include flexC;
+    width: 100%;
+    max-width: 850px;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.info {
+  width: 100%;
+  .info_header {
+    @include flexR;
+    width: 100%;
+    font-family: $font-art;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.4rem;
+  }
+  .info_content {
+    font-size: 1rem;
+    text-align: left;
+    p,
+    span {
+      font-size: 1rem;
+      font-family: $font-content;
+    }
+    span {
+      text-decoration: underline;
+    }
+  }
+}
+
+.about {
+  line-height: 2.5rem;
+  width: 100vw;
+  h2 {
+    border-bottom: 1px solid $clr_assist;
+  }
+  b {
+    border-bottom: 8px solid $clr_light;
+  }
+  .about_box {
+    @include flexC;
+    .about_img {
+      @include flexC;
+    }
+  }
+}
+.order {
+  position: relative;
+}
+.loadingContainer {
+  @include flexC;
+  height: 300px;
+  width: 300px;
+  .loadingImg {
+    height: 100px;
+    width: 100px;
+    animation: loadingImg 5000ms infinite linear;
+    margin: 1rem;
+  }
+
+  .loadingText {
+    font-weight: 800;
+    color: $clr_alert;
+  }
+}
+
+@keyframes loadingImg {
+  to {
+    transform: rotate(360deg) translate(0px, 0px);
+  }
+}
+
+.searchForm {
+  width: 25rem;
+  height: 6rem;
+  @include flexC;
+  input {
+    padding: 1rem;
+    width: 95vw;
+    max-width: 400px;
+    height: 100%;
+    font-size: 2rem;
+  }
+}
+.order_info {
+  position: fixed;
+  @include flexR;
+  right: 0;
+  top: 6rem;
+  z-index: 3;
+  padding: 0;
+  margin: 0;
+  &_content {
+    background-color: rgba($clr_dark, 0.6);
+    color: $clr_bright;
+    padding: 0.5rem;
+    border-radius: 1rem;
+  }
+  &_btn {
+    @include flexC;
+    align-items: flex-start;
+    height: 12rem;
+    button {
+      margin: 0;
+      color: $clr_alert;
+    }
+  }
+}
+
+.orderPage {
+  height: auto;
+  position: relative;
+}
+
+.searchSect {
+  @include flexC;
+}
+
+.drinksResultSect {
+  @include flexC;
+}
+.chekcoutBtn {
+  background-color: transparent;
+  position: absolute;
+  right: 0;
+  top: -50px;
+  cursor: pointer;
+}
+
+.orederItem {
+  @include flexR;
+  justify-content: space-between;
+  width: 350px;
+  border-top: 1px solid $clr_dark;
+  .name {
+    font-weight: 800;
+    width: 200px;
+  }
+  .amount {
+    font-weight: 500;
+  }
+}
+.orederItem:hover {
+  color: red;
+}
+
+.wrong {
+  @include flexC;
+  img {
+    width: 15rem;
+    height: 15rem;
+  }
+}
+
+.footer {
+  @include flexC;
+}
