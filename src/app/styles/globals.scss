@@ -91,13 +91,13 @@ img {
 .item {
   @include flexC;
   position: relative;
-  margin: 0.5rem;
+  margin: 1rem;
   width: 250px;
   height: 300px;
   &_description {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 1.2rem;
+    right: 1rem;
     font-weight: 700;
   }
   &_info {
@@ -203,41 +203,28 @@ section {
 .order {
   position: relative;
 }
-.loadingContainer {
+
+.fallback {
   @include flexC;
   height: 300px;
   width: 300px;
-  .loadingImg {
+  &_img {
     height: 100px;
     width: 100px;
-    animation: loadingImg 5000ms infinite linear;
     margin: 1rem;
+    animation: fallbackImg 9000ms infinite linear;
   }
-
-  .loadingText {
+  &_text {
     font-weight: 800;
     color: $clr_alert;
   }
 }
-
-@keyframes loadingImg {
+@keyframes fallbackImg {
   to {
     transform: rotate(360deg) translate(0px, 0px);
   }
 }
 
-.searchForm {
-  width: 25rem;
-  height: 6rem;
-  @include flexC;
-  input {
-    padding: 1rem;
-    width: 95vw;
-    max-width: 400px;
-    height: 100%;
-    font-size: 2rem;
-  }
-}
 .order_info {
   position: fixed;
   @include flexR;
@@ -295,9 +282,9 @@ section {
   .amount {
     font-weight: 500;
   }
-}
-.orederItem:hover {
-  color: red;
+  &:hover {
+    color: red;
+  }
 }
 
 .wrong {

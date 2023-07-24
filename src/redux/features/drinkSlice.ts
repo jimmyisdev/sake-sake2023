@@ -1,4 +1,9 @@
-import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  PayloadAction,
+  createSlice,
+  createAsyncThunk,
+  current,
+} from "@reduxjs/toolkit";
 import { DrinkSliceStateType, OrderItemType } from "../../../types";
 
 export const getDrinkBySearchVal = createAsyncThunk(
@@ -11,15 +16,19 @@ export const getDrinkBySearchVal = createAsyncThunk(
       const response = await fetch(currentFetch);
       const data = await response.json();
       const { drinks } = data;
-      let processedData = drinks.map((item: any) => {
-        return {
-          id: item.idDrink,
-          name: item.strDrink,
-          img: item.strDrinkThumb,
-          category: item.strCategory,
-        };
-      });
-      return processedData;
+      if (drinks === null) {
+        return [];
+      } else {
+        let processedData = drinks.map((item: any) => {
+          return {
+            id: item.idDrink,
+            name: item.strDrink,
+            img: item.strDrinkThumb,
+            category: item.strCategory,
+          };
+        });
+        return processedData;
+      }
     } catch (error) {
       return String(error);
     }
@@ -48,8 +57,11 @@ export const drinkSlice = createSlice({
       state: DrinkSliceStateType,
       action: PayloadAction<OrderItemType>
     ) => {
-      const {name, amount} = action.payload
-      state.orderList= [...state.orderList, action.payload]
+      if (!state.orderList.length) {
+        state.orderList = [action.payload];
+      } else {
+        state.orderList = [...state.orderList, action.payload];
+      }
     },
   },
   extraReducers: (builder) => {
@@ -63,7 +75,6 @@ export const drinkSlice = createSlice({
       })
       .addCase(getDrinkBySearchVal.rejected, (state, action) => {
         state.isLoading = false;
-        // state.error = action.payload;
         state.tempDrinks = [];
       });
   },

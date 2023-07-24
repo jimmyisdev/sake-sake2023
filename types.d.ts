@@ -10,13 +10,14 @@ export interface OrderItemType {
   amount: number;
 }
 
-export interface DrinkSliceStateType{
-  orderList: Array<OrderItemType>;
+export interface DrinkSliceStateType {
+  isLoading: boolean;
+  orderList: Array<OrderItemType> | Array[];
   searchVal: string;
-  tempDrinks: Array<any>
+  tempDrinks: Array<DrinkType>;
+  error: string;
 }
-export interface BillSliceStateType{
-  productList: Array<OrderItemType>;
+export interface BillSliceStateType {
+  productList: Array<OrderItemType> | Array[];
   isCheckout: boolean;
 }
-

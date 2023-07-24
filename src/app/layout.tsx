@@ -18,8 +18,8 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/assets/logo.png" type="image/x-icon" />
       </head>
-      <body>
-        <Providers >
+      <body suppressHydrationWarning={true}>
+        <Providers>
           <Navbar />
           {children}
           <Footer />

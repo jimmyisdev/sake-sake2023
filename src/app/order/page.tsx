@@ -7,13 +7,18 @@ import DrinkContainer from "../components/DrinkContainer";
 import SearchSect from "../components/SearchSect";
 import CheckoutSect from "../components/CheckoutSect";
 import Image from "next/image";
-import Loading from "../components/Loading";
+import Fallback from "../components/Fallback";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import { OrderItemType } from "../../../types";
 
 export default function Order() {
   const dispatch = useDispatch();
   const isLoading = useSelector((state: RootState) => state.drink.isLoading);
   const isCheckout = useSelector((state: RootState) => state.bill.isCheckout);
-  const orderList = useSelector((state: RootState) => state.drink.orderList);
+  const orderList: Array<OrderItemType> = useSelector(
+    (state: RootState) => state.drink.orderList
+  );
 
   function handleCheckoutBtn() {
     dispatch(setCheckout());
@@ -39,10 +44,22 @@ export default function Order() {
       {!isCheckout && !isLoading && <DrinkContainer />}
       {!isCheckout && isLoading && (
         <section className="flexC">
-          <Loading />
+          <Fallback text="is loading..." />
         </section>
       )}
       {isCheckout && <CheckoutSect />}
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </main>
   );
 }

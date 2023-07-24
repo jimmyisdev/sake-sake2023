@@ -5,6 +5,7 @@ import { DrinkType } from "../../../types";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { addOrder } from "@component/redux/features/drinkSlice";
+import { toast } from "react-toastify";
 
 export default function DrinkItem({ data }: { data: DrinkType }) {
   const { category, id, img, name } = data;
@@ -12,13 +13,27 @@ export default function DrinkItem({ data }: { data: DrinkType }) {
   const dispatch = useDispatch();
 
   function handleOrderBtn() {
+    let amount = Number(selectRef.current?.value);
+    let notifyText = `You just ordered ${amount} ${name}`;
+
     dispatch(
       addOrder({
         name: name,
-        amount: Number(selectRef.current?.value),
+        amount: amount,
       })
     );
+    toast(notifyText, {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   }
+
   return (
     <div className="item">
       <span className="item_description">{category}</span>
