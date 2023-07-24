@@ -8,11 +8,7 @@ export const metadata = {
   description: "best bar",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: JSX.Element }) {
   return (
     <html lang="en">
       <head>
