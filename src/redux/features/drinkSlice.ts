@@ -2,7 +2,6 @@ import {
   PayloadAction,
   createSlice,
   createAsyncThunk,
-  current,
 } from "@reduxjs/toolkit";
 import { DrinkSliceStateType, OrderItemType } from "../../../types";
 

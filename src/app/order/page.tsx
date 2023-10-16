@@ -1,5 +1,3 @@
-"use client";
-import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@component/redux/store";
 import { setCheckout } from "@component/redux/features/billSlice";
@@ -8,17 +6,13 @@ import SearchSect from "../components/SearchSect";
 import CheckoutSect from "../components/CheckoutSect";
 import Image from "next/image";
 import Fallback from "../components/Fallback";
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from "react-toastify";
-import { OrderItemType } from "../../../types";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 export default function Order() {
   const dispatch = useDispatch();
   const isLoading = useSelector((state: RootState) => state.drink.isLoading);
   const isCheckout = useSelector((state: RootState) => state.bill.isCheckout);
-  const orderList: Array<OrderItemType> = useSelector(
-    (state: RootState) => state.drink.orderList
-  );
 
   function handleCheckoutBtn() {
     dispatch(setCheckout());

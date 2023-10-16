@@ -3,6 +3,9 @@
 ## Deploy
 https://sake-sake2023.vercel.app/
 
+## Demo video
+https://youtu.be/p-Cutwb0RvA
+
 ## Description
 This is a basic bar order system App
 

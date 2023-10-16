@@ -287,14 +287,6 @@ section {
   }
 }
 
-.wrong {
-  @include flexC;
-  img {
-    width: 15rem;
-    height: 15rem;
-  }
-}
-
 .footer {
   @include flexC;
 }
